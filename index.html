@@ -1,0 +1,1219 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Evolution Roofing & Repair | Quality Roofing Solutions</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary: #0066cc;       /* Main Blue */
+            --secondary: #004d99;     /* Darker Blue for buttons */
+            --accent: #ff6b35;        /* Keeping accent for icons only */
+            --light-bg: #f8fafc;
+            --white: #ffffff;
+            --text-dark: #1e293b;
+            --text-light: #64748b;
+            --card-shadow: 0 10px 25px rgba(0, 0, 0, 0.05);
+            --border-light: rgba(0, 0, 0, 0.08);
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            overflow-x: hidden;
+            background: var(--white);
+            color: var(--text-dark);
+            line-height: 1.6;
+        }
+
+        /* Animated Background - Light Version */
+        .bg-animation {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            background: linear-gradient(135deg, #f8fafc 0%, #f1f5f9 50%, #e2e8f0 100%);
+        }
+
+        .bg-animation::before {
+            content: '';
+            position: absolute;
+            width: 200%;
+            height: 200%;
+            background: 
+                radial-gradient(circle at 20% 50%, rgba(0, 102, 204, 0.05) 0%, transparent 50%),
+                radial-gradient(circle at 80% 80%, rgba(0, 77, 153, 0.05) 0%, transparent 50%);
+            animation: float 20s ease-in-out infinite;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translate(0, 0) rotate(0deg); }
+            33% { transform: translate(50px, -50px) rotate(120deg); }
+            66% { transform: translate(-30px, 30px) rotate(240deg); }
+        }
+
+        /* Navigation - Light Theme */
+        nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            z-index: 1000;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(20px);
+            border-bottom: 1px solid var(--border-light);
+            padding: 1.5rem 0;
+            transition: all 0.3s;
+            box-shadow: 0 2px 20px rgba(0, 0, 0, 0.03);
+        }
+
+        nav.scrolled {
+            padding: 1rem 0;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.08);
+        }
+
+        .nav-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 3rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 1.8rem;
+            font-weight: 900;
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            letter-spacing: -1px;
+        }
+
+        .nav-menu {
+            display: flex;
+            gap: 3rem;
+            list-style: none;
+            align-items: center;
+        }
+
+        .nav-menu a {
+            color: var(--text-dark);
+            text-decoration: none;
+            font-weight: 600;
+            position: relative;
+            transition: color 0.3s;
+            opacity: 0.8;
+        }
+
+        .nav-menu a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--primary);
+            transition: width 0.3s;
+        }
+
+        .nav-menu a:hover {
+            color: var(--primary);
+            opacity: 1;
+        }
+
+        .nav-menu a:hover::after {
+            width: 100%;
+        }
+
+        .cta-nav {
+            /* Updated: Bluish Gradient */
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            padding: 0.8rem 2rem;
+            border-radius: 50px;
+            color: white !important;
+            border: none;
+            font-weight: 700;
+            cursor: pointer;
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .cta-nav::after {
+            display: none;
+        }
+
+        .cta-nav:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 30px rgba(0, 102, 204, 0.3);
+        }
+
+        /* Hamburger Menu */
+        .hamburger {
+            display: none;
+            flex-direction: column;
+            cursor: pointer;
+            gap: 4px;
+            padding: 8px;
+        }
+
+        .hamburger span {
+            width: 25px;
+            height: 3px;
+            background: var(--primary);
+            border-radius: 2px;
+            transition: 0.3s;
+        }
+
+        .hamburger.active span:nth-child(1) {
+            transform: rotate(45deg) translate(6px, 6px);
+        }
+
+        .hamburger.active span:nth-child(2) {
+            opacity: 0;
+        }
+
+        .hamburger.active span:nth-child(3) {
+            transform: rotate(-45deg) translate(6px, -6px);
+        }
+
+        /* Hero Section - Light */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            padding: 8rem 2rem 4rem;
+            overflow: hidden;
+            /* Header Background Picture */
+            background: url('https://images.unsplash.com/photo-1607608277076-b2a2cb601f86?q=80&w=2070&auto=format&fit=crop');
+            background-size: cover;
+            background-position: center;
+        }
+
+        .hero-overlay {
+                background-image: url(https://scontent.fcla6-1.fna.fbcdn.net/v/t39.30808-6/611739450_25810699115235824_5566168800692626150_n.jpg?_nc_cat=103&ccb=1-7&_nc_sid=833d8c&_nc_ohc=ujUkDTKjRZ0Q7kNvwGG5tp5&_nc_oc=Adl7GrUfgcPhxk6iDrfb4hvZz_IS9u0_p3p5TKcXVoOeKdognRcOsn-qmy8ZOV9ZKH8&_nc_zt=23&_nc_ht=scontent.fcla6-1.fna&_nc_gid=_CTvBSARKpke2KHl9SKgAA&oh=00_AfqV9Y-8eGUReENV88kNOfA95Todg8LpnZqKU8SlvSoeWw&oe=697657AC);
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    position: absolute;
+    filter: blur(3px);
+    -webkit-filter: blur(3px);
+    inset: 0;
+    /* background: linear-gradient(135deg, rgba(255, 255, 255, 0.95) 0%, rgb(99 32 32 / 85%) 100%); */
+    z-index: 1;
+        }
+
+        .hero-content {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: center;
+            position: relative;
+            z-index: 2;
+        }
+
+        .hero-text h1 {
+            font-size: 5rem;
+            font-weight: 900;
+            line-height: 1.1;
+            margin-bottom: 1.5rem;
+            color: #ffffff;
+            animation: slideInLeft 1s ease;
+        }
+
+        .hero-text h1 .gradient-text {
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .hero-text .mission {
+            font-size: 1.3rem;
+            color: #ffffff;
+            margin-bottom: 2rem;
+            line-height: 1.8;
+            animation: slideInLeft 1.2s ease;
+        }
+
+        .hero-text .highlight {
+            color: var(--primary);
+            font-weight: 700;
+        }
+
+        .hero-buttons {
+            display: flex;
+            gap: 1.5rem;
+            flex-wrap: wrap;
+            animation: slideInLeft 1.4s ease;
+        }
+
+        .btn-primary, .btn-secondary {
+            padding: 1.2rem 3rem;
+            border-radius: 50px;
+            font-size: 1.1rem;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.3s;
+            border: none;
+            text-decoration: none;
+            display: inline-block;
+        }
+
+        /* Updated: Bluish Button Gradient */
+        .btn-primary {
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            color: white;
+            box-shadow: 0 10px 30px rgba(0, 102, 204, 0.2);
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 15px 40px rgba(0, 102, 204, 0.3);
+        }
+
+        .btn-secondary {
+            background: transparent;
+            color: var(--primary);
+            border: 2px solid var(--primary);
+        }
+
+        .btn-secondary:hover {
+            background: rgba(0, 102, 204, 0.05);
+            transform: translateY(-3px);
+        }
+
+        .hero-visual {
+            position: relative;
+            animation: slideInRight 1s ease;
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 1.5rem;
+        }
+
+        .stat-card {
+            background: var(--white);
+            backdrop-filter: blur(20px);
+            border: 1px solid var(--border-light);
+            border-radius: 20px;
+            padding: 2rem;
+            text-align: center;
+            transition: all 0.3s;
+            box-shadow: var(--card-shadow);
+        }
+
+        .stat-card:hover {
+            transform: translateY(-5px);
+            background: var(--white);
+            border-color: var(--primary);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+        }
+
+        .stat-number {
+            font-size: 3rem;
+            font-weight: 900;
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 0.5rem;
+        }
+
+        .stat-label {
+            color: var(--text-light);
+            font-size: 1rem;
+            font-weight: 600;
+        }
+
+        @keyframes slideInLeft {
+            from {
+                opacity: 0;
+                transform: translateX(-50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        @keyframes slideInRight {
+            from {
+                opacity: 0;
+                transform: translateX(50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        /* Services Section - Light */
+        .services {
+            padding: 6rem 2rem;
+            position: relative;
+            background: var(--light-bg);
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 4rem;
+        }
+
+        .section-header h2 {
+            font-size: 3.5rem;
+            font-weight: 900;
+            margin-bottom: 1rem;
+            color: var(--text-dark);
+        }
+
+        .section-header p {
+            font-size: 1.2rem;
+            color: var(--text-light);
+        }
+
+        .services-grid {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .service-card {
+            background: var(--white);
+            backdrop-filter: blur(20px);
+            border: 1px solid var(--border-light);
+            border-radius: 30px;
+            padding: 3rem 2rem;
+            transition: all 0.4s;
+            position: relative;
+            overflow: hidden;
+            box-shadow: var(--card-shadow);
+        }
+
+        .service-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, rgba(0, 102, 204, 0.05), rgba(0, 77, 153, 0.05));
+            opacity: 0;
+            transition: opacity 0.4s;
+        }
+
+        .service-card:hover {
+            transform: translateY(-10px);
+            border-color: var(--primary);
+            box-shadow: 0 20px 60px rgba(0, 102, 204, 0.15);
+        }
+
+        .service-card:hover::before {
+            opacity: 1;
+        }
+
+        .service-icon {
+            font-size: 4rem;
+            margin-bottom: 1.5rem;
+            opacity: 0.9;
+        }
+
+        .service-card h3 {
+            font-size: 1.8rem;
+            margin-bottom: 1rem;
+            color: var(--text-dark);
+            position: relative;
+            z-index: 1;
+        }
+
+        .service-card p {
+            color: var(--text-light);
+            line-height: 1.8;
+            position: relative;
+            z-index: 1;
+        }
+
+        /* Features - Light (Generic) */
+        .eco-features {
+            padding: 6rem 2rem;
+            background: var(--white);
+            position: relative;
+        }
+
+        .eco-grid {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+        }
+
+        .eco-card {
+            background: var(--light-bg);
+            backdrop-filter: blur(20px);
+            border: 1px solid var(--border-light);
+            border-radius: 20px;
+            padding: 2.5rem;
+            text-align: center;
+            transition: all 0.3s;
+            box-shadow: var(--card-shadow);
+        }
+
+        .eco-card:hover {
+            transform: scale(1.05);
+            background: var(--white);
+            border-color: var(--primary);
+        }
+
+        .eco-icon {
+            font-size: 3.5rem;
+            margin-bottom: 1rem;
+            display: block;
+            opacity: 0.9;
+        }
+
+        .eco-card h4 {
+            font-size: 1.4rem;
+            margin-bottom: 1rem;
+            color: var(--primary);
+        }
+
+        .eco-card p {
+            color: var(--text-light);
+        }
+
+        /* Gallery - Light */
+        .gallery {
+            padding: 6rem 2rem;
+            background: var(--light-bg);
+        }
+
+        .gallery-container {
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .gallery-item {
+            position: relative;
+            border-radius: 30px;
+            overflow: hidden;
+            height: 450px;
+            cursor: pointer;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1);
+            border: 1px solid var(--border-light);
+        }
+
+        .ba-container {
+            position: relative;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+        }
+
+        .ba-image {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            position: absolute;
+            top: 0;
+            left: 0;
+        }
+
+        .ba-after {
+            clip-path: polygon(50% 0, 100% 0, 100% 100%, 50% 100%);
+            transition: clip-path 0.6s ease;
+        }
+
+        .gallery-item:hover .ba-after {
+            clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%);
+        }
+
+        .ba-label {
+            position: absolute;
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            color: white;
+            padding: 0.8rem 1.5rem;
+            font-weight: 900;
+            font-size: 0.9rem;
+            z-index: 10;
+            border-radius: 10px;
+            letter-spacing: 2px;
+        }
+
+        .label-before {
+            top: 30px;
+            left: 30px;
+        }
+
+        .label-after {
+            top: 30px;
+            right: 30px;
+        }
+
+        .ba-divider {
+            position: absolute;
+            left: 50%;
+            top: 0;
+            width: 3px;
+            height: 100%;
+            background: white;
+            box-shadow: 0 0 20px rgba(255, 255, 255, 0.8);
+            z-index: 10;
+            transition: left 0.6s ease;
+        }
+
+        .gallery-item:hover .ba-divider {
+            left: 100%;
+        }
+
+        /* Discounts Section - Light */
+        .discounts {
+            padding: 6rem 2rem;
+            background: linear-gradient(135deg, rgba(0, 102, 204, 0.05), rgba(0, 77, 153, 0.05));
+            position: relative;
+        }
+
+        .discounts-content {
+            max-width: 1000px;
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        .discount-cards {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .discount-card {
+            background: var(--white);
+            backdrop-filter: blur(20px);
+            border: 2px solid var(--primary); /* Changed accent to primary for consistency */
+            border-radius: 30px;
+            padding: 3rem 2rem;
+            transition: all 0.3s;
+            box-shadow: var(--card-shadow);
+        }
+
+        .discount-card:hover {
+            transform: scale(1.05);
+            box-shadow: 0 20px 60px rgba(0, 102, 204, 0.15);
+        }
+
+        .discount-icon {
+            font-size: 4rem;
+            margin-bottom: 1rem;
+            opacity: 0.9;
+        }
+
+        .discount-card h3 {
+            font-size: 2rem;
+            color: var(--primary);
+            margin-bottom: 1rem;
+        }
+
+        .discount-card p {
+            color: var(--text-light);
+        }
+
+        /* Contact Section - Light */
+        .contact {
+            padding: 6rem 2rem;
+            background: var(--white);
+        }
+
+        .contact-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: center;
+        }
+
+        .contact-info h3 {
+            font-size: 2.5rem;
+            margin-bottom: 2rem;
+            color: var(--text-dark);
+        }
+
+        .info-item {
+            display: flex;
+            align-items: center;
+            gap: 1.5rem;
+            margin-bottom: 2rem;
+            padding: 1.5rem;
+            background: var(--light-bg);
+            border-radius: 20px;
+            transition: all 0.3s;
+            border: 1px solid var(--border-light);
+        }
+
+        .info-item:hover {
+            background: var(--white);
+            transform: translateX(10px);
+            border-color: var(--primary);
+            box-shadow: var(--card-shadow);
+        }
+
+        .info-icon {
+            font-size: 2.5rem;
+            color: var(--primary);
+            opacity: 0.9;
+        }
+
+        .info-text h4 {
+            font-size: 1.2rem;
+            margin-bottom: 0.5rem;
+            color: var(--primary);
+        }
+
+        .info-text p {
+            color: var(--text-light);
+            font-size: 1.1rem;
+        }
+
+        .contact-form {
+            background: var(--light-bg);
+            backdrop-filter: blur(20px);
+            border: 1px solid var(--border-light);
+            border-radius: 30px;
+            padding: 3rem;
+            box-shadow: var(--card-shadow);
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            color: var(--primary);
+            font-weight: 600;
+        }
+
+        .form-group input,
+        .form-group textarea {
+            width: 100%;
+            padding: 1rem 1.5rem;
+            background: var(--white);
+            border: 1px solid var(--border-light);
+            border-radius: 15px;
+            color: var(--text-dark);
+            font-size: 1rem;
+            transition: all 0.3s;
+        }
+
+        .form-group input:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: var(--primary);
+            background: var(--white);
+            box-shadow: 0 0 20px rgba(0, 102, 204, 0.1);
+        }
+
+        .form-group input::placeholder,
+        .form-group textarea::placeholder {
+            color: var(--text-light);
+            opacity: 0.6;
+        }
+
+        .form-group textarea {
+            resize: vertical;
+            min-height: 150px;
+        }
+
+        /* Footer - Light */
+        footer {
+            background: var(--light-bg);
+            padding: 3rem 2rem 2rem;
+            border-top: 1px solid var(--border-light);
+        }
+
+        .footer-content {
+            max-width: 1400px;
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        .footer-logo {
+            font-size: 2rem;
+            font-weight: 900;
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 1rem;
+        }
+
+        .footer-content p {
+            color: var(--text-light);
+            margin-top: 1rem;
+        }
+
+        /* Mobile Menu */
+        @media (max-width: 968px) {
+            .hero-content,
+            .contact-container {
+                grid-template-columns: 1fr;
+            }
+
+            .hero-text h1 {
+                font-size: 3.5rem;
+            }
+
+            .nav-menu {
+                gap: 1.5rem;
+            }
+
+            .section-header h2 {
+                font-size: 2.5rem;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .hero-text h1 {
+                font-size: 2.5rem;
+            }
+
+            .stats-grid {
+                grid-template-columns: 1fr;
+            }
+
+            /* Mobile Menu Styles */
+            .hamburger {
+                display: flex;
+            }
+
+            .nav-menu {
+                position: fixed;
+                top: 80px;
+                left: 0;
+                width: 100%;
+                background: var(--white);
+                flex-direction: column;
+                align-items: center;
+                padding: 2rem;
+                box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1);
+                border-top: 1px solid var(--border-light);
+                transform: translateY(-100%);
+                opacity: 0;
+                visibility: hidden;
+                transition: all 0.3s ease;
+                z-index: 999;
+            }
+
+            .nav-menu.active {
+                transform: translateY(0);
+                opacity: 1;
+                visibility: visible;
+            }
+
+            .nav-menu li {
+                width: 100%;
+                text-align: center;
+                padding: 1rem 0;
+                border-bottom: 1px solid var(--border-light);
+            }
+
+            .nav-menu li:last-child {
+                border-bottom: none;
+            }
+
+            .nav-menu a {
+                font-size: 1.1rem;
+                padding: 0.5rem 0;
+                display: block;
+                width: 100%;
+            }
+
+            .cta-nav {
+                margin-top: 1rem;
+                display: inline-block;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .hero-text h1 {
+                font-size: 2rem;
+            }
+
+            .hero-buttons {
+                flex-direction: column;
+                gap: 1rem;
+            }
+
+            .btn-primary, .btn-secondary {
+                width: 100%;
+                text-align: center;
+            }
+
+            .gallery-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .gallery-item {
+                height: 350px;
+            }
+
+            .nav-container {
+                padding: 0 1.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="bg-animation"></div>
+
+    <nav id="navbar">
+        <div class="nav-container">
+            <div class="logo">Evolution Roofing</div>
+            <div class="hamburger" id="hamburger">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+            <ul class="nav-menu" id="navMenu">
+                <li><a href="#home">Home</a></li>
+                <li><a href="#services">Services</a></li>
+                <li><a href="#gallery">Gallery</a></li>
+                <li><a href="#features">Why Us</a></li>
+                <li><a href="#contact">Contact</a></li>
+                <li><a href="#contact" class="cta-nav">Get Quote</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <section id="home" class="hero">
+        <div class="hero-overlay"></div>
+        <div class="hero-content">
+            <div class="hero-text">
+                <h1>Quality Roofing, <span class="gradient-text">Lasting Protection</span></h1>
+                <p class="mission">
+                    Our mission is simple: <span class="highlight">Providing top-tier roofing solutions</span> for Metal, Tile, and Shingle needs. We focus on durability, aesthetics, and your peace of mind.
+                </p>
+                <div class="hero-buttons">
+                    <a href="#contact" class="btn-primary">Free Inspection</a>
+                    <a href="#services" class="btn-secondary">Our Services</a>
+                </div>
+            </div>
+            <div class="hero-visual">
+                <div class="stats-grid">
+                    <div class="stat-card">
+                        <div class="stat-number">100%</div>
+                        <div class="stat-label">Satisfaction</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-number">20+</div>
+                        <div class="stat-label">Years Experience</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-number">1000+</div>
+                        <div class="stat-label">Roofs Completed</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-number">24/7</div>
+                        <div class="stat-label">Emergency Support</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="services" class="services">
+        <div class="section-header">
+            <h2>Premium Roof Services</h2>
+            <p>Comprehensive solutions for residential and commercial properties</p>
+        </div>
+        <div class="services-grid">
+            <div class="service-card">
+                <div class="service-icon">🏘️</div>
+                <h3>Metal Roofing</h3>
+                <p>High-durability metal solutions resistant to rust and hurricanes. Sleek and modern protection for your home.</p>
+            </div>
+            <div class="service-card">
+                <div class="service-icon">🏢</div>
+                <h3>Tile Roofing</h3>
+                <p>Classic elegance that offers exceptional longevity. We handle installation and expert repairs for clay and concrete.</p>
+            </div>
+            <div class="service-card">
+                <div class="service-icon">🛠️</div>
+                <h3>Shingle Repair</h3>
+                <p>Cost-effective and versatile solutions for asphalt shingles. We fix leaks and replace damaged sections quickly.</p>
+            </div>
+            <div class="service-card">
+                <div class="service-icon">⚡</div>
+                <h3>Maintenance</h3>
+                <p>Regular maintenance programs to extend the life of your roof and prevent costly repairs down the line.</p>
+            </div>
+            <div class="service-card">
+                <div class="service-icon">🛡️</div>
+                <h3>Coatings</h3>
+                <p>High-performance protective coatings that shield your roof from UV damage and weather elements.</p>
+            </div>
+            <div class="service-card">
+                <div class="service-icon">✓</div>
+                <h3>Inspections</h3>
+                <p>Thorough roof inspections to assess damage and provide honest recommendations for your property.</p>
+            </div>
+        </div>
+    </section>
+    
+    <section id="gallery" class="gallery">
+        <div class="gallery-container">
+            <div class="section-header">
+                <h2>Remarkable Transformations</h2>
+                <p>See the difference our restoration process makes</p>
+            </div>
+            <div class="gallery-grid">
+                <div class="gallery-item">
+                    <div class="ba-container">
+                        <div class="ba-label label-before">BEFORE</div>
+                        <div class="ba-label label-after">AFTER</div>
+                        <div class="ba-divider"></div>
+                        <img class="ba-image" src="https://scontent.fcla4-1.fna.fbcdn.net/v/t39.30808-6/615517104_25530237319959770_8523318590535871794_n.jpg?stp=cp6_dst-jpg_tt6&_nc_cat=102&ccb=1-7&_nc_sid=127cfc&_nc_ohc=j4hwoAB0qPQQ7kNvwF0GzLB&_nc_oc=AdlhcxmvrXoL30duNk-nanKTFd0Uo-hOeqBrEUA9TqSOD89dIzhIm6xzOTBs3tgqCS4&_nc_zt=23&_nc_ht=scontent.fcla4-1.fna&_nc_gid=bw7I_6QPX2PcGRVZr8T35Q&oh=00_AfpQ9UzVMfE9gMrXtIzlrsc04l7TRR3NHRIZ_RsaxmoaMQ&oe=6974CB73" alt="Before Restoration">
+                        <img class="ba-image ba-after" src="https://scontent.fcla4-1.fna.fbcdn.net/v/t39.30808-6/614418397_25530237003293135_110251674972802731_n.jpg?stp=cp6_dst-jpg_tt6&_nc_cat=108&ccb=1-7&_nc_sid=127cfc&_nc_ohc=SSBgNQEJYSwQ7kNvwEykxkt&_nc_oc=Adnytx5wtb0iihfeGf_fFrDzJvDgxfXx5Nk7zZKzcaek93yQIULSqntJF_WfpOVoO6w&_nc_zt=23&_nc_ht=scontent.fcla4-1.fna&_nc_gid=5AFtIo5wwgStedQ9KATfYg&oh=00_AfpoO5hWBBo9uFxmBL-ktgBE70zxXtqv0sAF3J23gG0Vfg&oe=6974D3D8" alt="After Restoration">
+                    </div>
+                </div>
+                <div class="gallery-item">
+                    <div class="ba-container">
+                        <div class="ba-label label-before">BEFORE</div>
+                        <div class="ba-label label-after">AFTER</div>
+                        <div class="ba-divider"></div>
+                        <img class="ba-image" src="https://scontent.fcla6-1.fna.fbcdn.net/v/t39.30808-6/612862747_25810699665235769_7987714398580006972_n.jpg?_nc_cat=101&ccb=1-7&_nc_sid=833d8c&_nc_ohc=mzYPgWXei98Q7kNvwHaC993&_nc_oc=AdlMfkMn3QTkIOWUjLUZr7d_4HFnpSX8FJCV34mdv0PZvwCRM9CpG2NZN-b_tbwOb3E&_nc_zt=23&_nc_ht=scontent.fcla6-1.fna&_nc_gid=sfHtDPaaw-wC9SI8Yl8sFw&oh=00_AfqU3HCyumSJbSJxOdnygznjDXDden5h8HrZEMnJKwPEsw&oe=6976655D" alt="Before Restoration">
+                        <img class="ba-image ba-after" src="https://scontent.fcla6-1.fna.fbcdn.net/v/t39.30808-6/611288283_25810699901902412_1166703573568921189_n.jpg?_nc_cat=111&ccb=1-7&_nc_sid=833d8c&_nc_ohc=JEaxTyjTMDYQ7kNvwFW8lB-&_nc_oc=AdmdqldKBkK7SbF9Cn0OlCym6osQohW0ok0p4oLIidiNc7OmrMFWJhc-fgVzILWrAak&_nc_zt=23&_nc_ht=scontent.fcla6-1.fna&_nc_gid=7w3Cvesjl4H6QB7ngniMQw&oh=00_Afr_8ESPcx6IFefzlh0k-6B4_ZIbmxnKUN42MWqSWnOYHg&oe=69767344" alt="After Restoration">
+                    </div>
+                </div>
+                
+                <div class="gallery-item">
+                    <div class="ba-container">
+                        <div class="ba-label label-before">BEFORE</div>
+                        <div class="ba-label label-after">AFTER</div>
+                        <div class="ba-divider"></div>
+                        <img class="ba-image" src="https://scontent.fcla4-1.fna.fbcdn.net/v/t39.30808-6/592158276_25149850081331831_1867390797733775978_n.jpg?stp=cp6_dst-jpg_tt6&_nc_cat=104&ccb=1-7&_nc_sid=127cfc&_nc_ohc=7YmQbbIU8FkQ7kNvwEiWGuR&_nc_oc=Adnk3t7nJraFkXMBAbh3l9Lo4RRXXf2uH1ASzIDo_VIQHR4XBo0uCmDQlYUDq8wMz4w&_nc_zt=23&_nc_ht=scontent.fcla4-1.fna&_nc_gid=RJ_xuYDQ4yR4EntMzVi4rA&oh=00_Afph-irT4WR5Mgysuslb_K0UFDI26pQ4eaqqLhia2IpxXg&oe=6974C5AF" alt="Before Restoration">
+                        <img class="ba-image ba-after" src="https://scontent.fcla6-1.fna.fbcdn.net/v/t39.30808-6/593885970_25149850457998460_6495659738730036822_n.jpg?stp=cp6_dst-jpg_tt6&_nc_cat=105&ccb=1-7&_nc_sid=127cfc&_nc_ohc=eAp6GQY1Xg4Q7kNvwGtzvvQ&_nc_oc=Admg_pIfRtkge1ndYhJ7M3HlJjvA8YcrYWQNic9NuACHVM74Mhtiy7PUikJxlCRx4_o&_nc_zt=23&_nc_ht=scontent.fcla6-1.fna&_nc_gid=m_qvcG1bI41wk9i_nigtxw&oh=00_AfpYrs4X9CQYnUQsgYhkWg1yDw3SecZTPQ7sWGkc-75Dbg&oe=6974D8D5" alt="After Restoration">
+                    </div>
+                </div>
+                
+            </div>
+        </div>
+    </section>
+
+    <section id="features" class="eco-features">
+        <div class="section-header">
+            <h2>Why Choose Evolution?</h2>
+            <p>Experience the difference quality makes</p>
+        </div>
+        <div class="eco-grid">
+            <div class="eco-card">
+                <span class="eco-icon">🏆</span>
+                <h4>Top Rated</h4>
+                <p>Consistently high ratings from neighbors in the community.</p>
+            </div>
+            <div class="eco-card">
+                <span class="eco-icon">💰</span>
+                <h4>Fair Pricing</h4>
+                <p>Competitive rates with honest estimates and no hidden fees.</p>
+            </div>
+            <div class="eco-card">
+                <span class="eco-icon">🚚</span>
+                <h4>Fast Response</h4>
+                <p>We understand urgency. Fast turnarounds for all repair needs.</p>
+            </div>
+            <div class="eco-card">
+                <span class="eco-icon">🤝</span>
+                <h4>Trusted Locally</h4>
+                <p>Your neighbors trust us with their most valuable asset.</p>
+            </div>
+        </div>
+    </section>
+
+    
+
+    <section class="discounts">
+        <div class="discounts-content">
+            <div class="section-header">
+                <h2>Special Discounts</h2>
+                <p>We honor our community heroes and seniors</p>
+            </div>
+            <div class="discount-cards">
+                <div class="discount-card">
+                    <div class="discount-icon">🎖️</div>
+                    <h3>Veterans Discount</h3>
+                    <p>Thank you for your service! Special pricing for all military veterans and active duty personnel.</p>
+                </div>
+                <div class="discount-card">
+                    <div class="discount-icon">👴</div>
+                    <h3>Senior Discount</h3>
+                    <p>Exclusive savings for our valued senior community members. Quality service at affordable rates.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="contact" class="contact">
+        <div class="section-header">
+            <h2>Let's Repair Your Roof</h2>
+            <p>Get your free consultation today</p>
+        </div>
+        <div class="contact-container">
+            <div class="contact-info">
+                <h3>Ready to Get Started?</h3>
+                <div class="info-item">
+                    <div class="info-icon">📞</div>
+                    <div class="info-text">
+                        <h4>Call Us</h4>
+                        <p>+1 239-745-2475</p>
+                    </div>
+                </div>
+                <div class="info-item">
+                    <div class="info-icon">📍</div>
+                    <div class="info-text">
+                        <h4>Location</h4>
+                        <p>Naples & Fort Myers, FL</p>
+                    </div>
+                </div>
+                <div class="info-item">
+                    <div class="info-icon">⏰</div>
+                    <div class="info-text">
+                        <h4>Business Hours</h4>
+                        <p>Mon - Fri: 7AM - 6PM<br>Sat: 8AM - 4PM</p>
+                    </div>
+                </div>
+            </div>
+            <form class="contact-form" onsubmit="handleSubmit(event)">
+                <div class="form-group">
+                    <label for="name">Full Name</label>
+                    <input type="text" id="name" required placeholder="Your full name">
+                </div>
+                <div class="form-group">
+                    <label for="email">Email Address</label>
+                    <input type="email" id="email" required placeholder="your.email@example.com">
+                </div>
+                <div class="form-group">
+                    <label for="phone">Phone Number</label>
+                    <input type="tel" id="phone" required placeholder="(123) 456-7890">
+                </div>
+                <div class="form-group">
+                    <label for="message">Tell Us About Your Project</label>
+                    <textarea id="message" required placeholder="Describe your roof restoration needs..."></textarea>
+                </div>
+                <button type="submit" class="btn-primary" style="width: 100%;">Get Free Consultation</button>
+            </form>
+        </div>
+    </section>
+
+    <footer>
+        <div class="footer-content">
+            <div class="footer-logo">EVOLUTION ROOFING</div>
+            <p>Providing top-tier roofing solutions for Metal, Tile, and Shingle needs.</p>
+            <p>Focus on durability, aesthetics, and your peace of mind.</p>
+            <p style="margin-top: 2rem;">&copy; 2024 Evolution Roofing & Repair. All Rights Reserved.</p>
+        </div>
+    </footer>
+
+    <script>
+        // Smooth scroll
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                }
+                
+                // Close mobile menu if open
+                if (window.innerWidth <= 768) {
+                    navMenu.classList.remove('active');
+                    hamburger.classList.remove('active');
+                }
+            });
+        });
+
+        // Navbar scroll effect
+        window.addEventListener('scroll', () => {
+            const navbar = document.getElementById('navbar');
+            if (window.scrollY > 100) {
+                navbar.classList.add('scrolled');
+            } else {
+                navbar.classList.remove('scrolled');
+            }
+        });
+
+        // Mobile menu toggle
+        const hamburger = document.getElementById('hamburger');
+        const navMenu = document.getElementById('navMenu');
+
+        hamburger.addEventListener('click', () => {
+            hamburger.classList.toggle('active');
+            navMenu.classList.toggle('active');
+        });
+
+        // Close menu when clicking outside on mobile
+        document.addEventListener('click', (e) => {
+            if (window.innerWidth <= 768) {
+                if (!navMenu.contains(e.target) && !hamburger.contains(e.target)) {
+                    navMenu.classList.remove('active');
+                    hamburger.classList.remove('active');
+                }
+            }
+        });
+
+        // Close menu on window resize
+        window.addEventListener('resize', () => {
+            if (window.innerWidth > 768) {
+                navMenu.classList.remove('active');
+                hamburger.classList.remove('active');
+            }
+        });
+
+        // Form submission
+        function handleSubmit(e) {
+            e.preventDefault();
+            alert('Thank you for your interest! We will contact you shortly to discuss your roof restoration project.');
+            e.target.reset();
+        }
+
+        // Animate stats on scroll
+        const observerOptions = {
+            threshold: 0.5,
+            rootMargin: '0px 0px -100px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.animation = 'slideInRight 0.8s ease forwards';
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.stat-card, .service-card, .eco-card').forEach(card => {
+            observer.observe(card);
+        });
+    </script>
+</body>
+</html>
